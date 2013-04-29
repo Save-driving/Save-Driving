@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  direccion_inicial: MyString
+  direccion_final: MyString
+  especial: 
+  ciudad: 
+  calificacion: 
+  observaciones: MyString
+
+two:
+  direccion_inicial: MyString
+  direccion_final: MyString
+  especial: 
+  ciudad: 
+  calificacion: 
+  observaciones: MyString
