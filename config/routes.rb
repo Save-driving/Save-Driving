@@ -1,4 +1,34 @@
 Sd::Application.routes.draw do
+  resources :programaciones
+
+
+  resources :servicios
+
+
+  resources :usuarios
+
+
+  resources :especiales
+
+
+  resources :calificaciones
+
+
+  resources :roles
+
+
+  resources :cargos
+
+
+  resources :ayudas
+
+
+  resources :ciudades
+
+
+  resources :documentos
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
