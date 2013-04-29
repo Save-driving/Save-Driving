@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  glosario: MyString
+  usos: MyString
+  contactos: MyString
+
+two:
+  glosario: MyString
+  usos: MyString
+  contactos: MyString
