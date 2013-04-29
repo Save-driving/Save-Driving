@@ -1,4 +1,5 @@
 Sd::Application.routes.draw do
+<<<<<<< HEAD
   resources :programaciones
 
 
@@ -29,6 +30,8 @@ Sd::Application.routes.draw do
   resources :documentos
 
 
+=======
+>>>>>>> a6efce2c2ae80648e0b8af03cdc3ef6cca34278f
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
