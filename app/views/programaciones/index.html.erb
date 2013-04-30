@@ -4,19 +4,21 @@
 <%= form_tag request.path, :method => 'get' do %>
   <%= content_tag :label do %>
     <%= image_tag('search2.png', :alt => '', :class => "img-circle" ) %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
     <%= text_field_tag :search, params[:search], :placeholder => "Buscar por Descripcion" %>
     <%= submit_tag "Consultar", :class => 'btn btn-inverse', :nombre => nil %>
     <% end %>
 <% end %>
 </div>
-<table class="table table-hover table-bordered table-condensed">
+<table class="table table-hover table-bordered table-condensed pretty">
   <thead>
     <tr>
-      <th>id</th>
-      <th>Usuario</th>
-      <th>Servicio</th>
-      <th>Descripcion</th>
-      <th></th>
+      <th><%= sortable "id" %></th>
+      <th><%= sortable "Usuario" %></th>
+      <th><%= sortable "Servicio" %></th>
+      <th><%= sortable "Descripcion" %></th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
