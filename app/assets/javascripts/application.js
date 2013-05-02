@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-<<<<<<< HEAD
 //= require twitter/bootstrap
 //= require lazybox
 //= require_tree .
@@ -25,10 +24,4 @@ $(document).ready(function() {
   $.rails.allowAction = $.lazybox.confirm;
  
 });
-=======
-<<<<<<< HEAD
-//= require twitter/bootstrap
-=======
->>>>>>> a6efce2c2ae80648e0b8af03cdc3ef6cca34278f
-//= require_tree .
->>>>>>> ceb3fe07fcb627db29758c51404cb32dc2823036
+

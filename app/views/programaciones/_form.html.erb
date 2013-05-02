@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%= simple_form_for(@programacion, :html => { :class => 'form-horizontal' }, :remote => true) do |f| %>
 
   <%= f.error_notification %>
@@ -13,15 +12,3 @@
   </div>
 <% end %>
 
-=======
-<%= simple_form_for @programacion, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :usuario_id %>
-  <%= f.input :servicio_id %>
-  <%= f.input :descripcion %>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                programaciones_path, :class => 'btn' %>
-  </div>
-<% end %>
->>>>>>> ceb3fe07fcb627db29758c51404cb32dc2823036
