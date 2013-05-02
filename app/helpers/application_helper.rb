@@ -1,4 +1,5 @@
 module ApplicationHelper
+<<<<<<< HEAD
 	
     def sortable(column, title = nil)
     title ||= column.titleize
@@ -19,4 +20,6 @@ module ApplicationHelper
 		html.html_safe
     end
 
+=======
+>>>>>>> ceb3fe07fcb627db29758c51404cb32dc2823036
 end
