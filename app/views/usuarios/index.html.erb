@@ -1,54 +1,51 @@
 <%- model_class = Usuario -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><center><p class="text-success">usuarios</p></center></h1>
+<%= form_tag request.path, :method => 'get' do %>
+  <%= content_tag :label do %>
+    <%= image_tag('search2.png', :alt => '', :class => "img-circle" ) %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Buscar por apellidos" %>
+    <%= submit_tag "Consultar", :class => 'btn btn-inverse', :nombre => nil %>
+    <% end %>
+<% end %>
 </div>
-<table class="table table-striped">
+<table class="table table-hover table-bordered table-condensed pretty">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:documento_id) %></th>
-      <th><%= model_class.human_attribute_name(:numero_doc) %></th>
-      <th><%= model_class.human_attribute_name(:nombres) %></th>
-      <th><%= model_class.human_attribute_name(:apellidos) %></th>
-      <th><%= model_class.human_attribute_name(:direccion) %></th>
-      <th><%= model_class.human_attribute_name(:ciudad_id) %></th>
-      <th><%= model_class.human_attribute_name(:telefonos) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:rol_id) %></th>
-      <th><%= model_class.human_attribute_name(:cargo_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%= sortable "id" %></th>
+      <th><%= sortable "documento_id" %></th>
+      <th><%= sortable "numero_doc" %></th>
+      <th><%= sortable "nombres" %></th>
+      <th><%= sortable "apellidos" %></th>
+      <th><%= sortable "direccion" %></th>
+      <th><%= sortable "ciudad_id" %></th>
+      <th><%= sortable "telefonos" %></th>
+      <th><%= sortable "email" %></th>
+      <th><%= sortable "rol_id" %></th>
+      <th><%= sortable "cargo_id" %></th>
+      <th>Acciones</th>
+
     </tr>
   </thead>
   <tbody>
-    <% @usuarios.each do |usuario| %>
-      <tr>
-        <td><%= link_to usuario.id, usuario_path(usuario) %></td>
-        <td><%= usuario.documento_id %></td>
-        <td><%= usuario.numero_doc %></td>
-        <td><%= usuario.nombres %></td>
-        <td><%= usuario.apellidos %></td>
-        <td><%= usuario.direccion %></td>
-        <td><%= usuario.ciudad_id %></td>
-        <td><%= usuario.telefonos %></td>
-        <td><%= usuario.email %></td>
-        <td><%= usuario.rol_id %></td>
-        <td><%= usuario.cargo_id %></td>
-        <td><%=l usuario.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_usuario_path(usuario), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      usuario_path(usuario),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+     <%= render @usuarios %>
   </tbody>
+  <tfoot>
+    <tr>
+      
+    </tr>
+  </tfoot>
 </table>
+<td><%= link_to 'Nueva usuario', new_usuario_path, :class => 'btn btn-success', :remote => true %></td>
+<br />
+<br />
+<div align="center">
+<%= will_paginate @usuarios, :previous_label => '&laquo; Anterior', :next_label => 'Siguiente
+&raquo;' %>
+</div>
+<p>
+<em>Total usuarios : </em><%= @usuarios.total_entries %>
+</p>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_usuario_path,
-            :class => 'btn btn-primary' %>

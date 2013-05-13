@@ -1,83 +1,53 @@
 class UsuariosController < ApplicationController
-  # GET /usuarios
-  # GET /usuarios.json
+ 
+ helper_method :sort_column, :sort_direction
   def index
-    @usuarios = Usuario.all
+  @rxp = (params[:numreg])? params[:numreg].to_i : 5
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @usuarios }
-    end
+   if ((@rxp) == 0) or ((@rxp) < 0) then
+      @rxp = 1
+   end
+   @usuarios = Usuario.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => (@rxp), :page => params[:page])
   end
 
-  # GET /usuarios/1
-  # GET /usuarios/1.json
+
   def show
     @usuario = Usuario.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @usuario }
-    end
   end
 
-  # GET /usuarios/new
-  # GET /usuarios/new.json
   def new
     @usuario = Usuario.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @usuario }
-    end
   end
 
-  # GET /usuarios/1/edit
+
   def edit
     @usuario = Usuario.find(params[:id])
   end
 
-  # POST /usuarios
-  # POST /usuarios.json
+
   def create
     @usuario = Usuario.new(params[:usuario])
-
-    respond_to do |format|
-      if @usuario.save
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
-        format.json { render json: @usuario, status: :created, location: @usuario }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
-      end
-    end
+    render :action => :new unless @usuario.save
   end
 
-  # PUT /usuarios/1
-  # PUT /usuarios/1.json
+
   def update
     @usuario = Usuario.find(params[:id])
-
-    respond_to do |format|
-      if @usuario.update_attributes(params[:usuario])
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
-      end
-    end
+    render :action => :edit unless @usuario.update_attributes(params[:usuario])
   end
 
-  # DELETE /usuarios/1
-  # DELETE /usuarios/1.json
   def destroy
     @usuario = Usuario.find(params[:id])
     @usuario.destroy
-
-    respond_to do |format|
-      format.html { redirect_to usuarios_url }
-      format.json { head :no_content }
-    end
   end
+
+  private
+  def sort_column
+    Usuario.column_names.include?(params[:sort]) ? params[:sort] : "apellidos"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end
+  
 end

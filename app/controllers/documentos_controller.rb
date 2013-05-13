@@ -1,83 +1,55 @@
 class DocumentosController < ApplicationController
-  # GET /documentos
-  # GET /documentos.json
+ 
+  helper_method :sort_column, :sort_direction
   def index
-    @documentos = Documento.all
+     @rxp = (params[:numreg])? params[:numreg].to_i : 5
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @documentos }
-    end
+   if ((@rxp) == 0) or ((@rxp) < 0) then
+      @rxp = 1
+   end
+   @documentos = Documento.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => (@rxp), :page => params[:page])
   end
 
-  # GET /documentos/1
-  # GET /documentos/1.json
+
   def show
     @documento = Documento.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @documento }
-    end
   end
 
-  # GET /documentos/new
-  # GET /documentos/new.json
+
   def new
     @documento = Documento.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @documento }
-    end
   end
 
-  # GET /documentos/1/edit
+
   def edit
     @documento = Documento.find(params[:id])
   end
 
-  # POST /documentos
-  # POST /documentos.json
+
   def create
     @documento = Documento.new(params[:documento])
-
-    respond_to do |format|
-      if @documento.save
-        format.html { redirect_to @documento, notice: 'Documento was successfully created.' }
-        format.json { render json: @documento, status: :created, location: @documento }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @documento.errors, status: :unprocessable_entity }
-      end
-    end
+    render :action => :new unless @documento.save
   end
 
-  # PUT /documentos/1
-  # PUT /documentos/1.json
+
   def update
     @documento = Documento.find(params[:id])
-
-    respond_to do |format|
-      if @documento.update_attributes(params[:documento])
-        format.html { redirect_to @documento, notice: 'Documento was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @documento.errors, status: :unprocessable_entity }
-      end
-    end
+    render :action => :edit unless @documento.update_attributes(params[:documento])
   end
 
-  # DELETE /documentos/1
-  # DELETE /documentos/1.json
+
   def destroy
     @documento = Documento.find(params[:id])
     @documento.destroy
-
-    respond_to do |format|
-      format.html { redirect_to documentos_url }
-      format.json { head :no_content }
-    end
   end
+
+     private
+  def sort_column
+    Documento.column_names.include?(params[:sort]) ? params[:sort] : "descripcion"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end
+  
 end

@@ -1,17 +1,29 @@
-<%= simple_form_for @usuario, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :documento_id %>
-  <%= f.input :numero_doc %>
-  <%= f.input :nombres %>
-  <%= f.input :apellidos %>
-  <%= f.input :direccion %>
-  <%= f.input :ciudad_id %>
-  <%= f.input :telefonos %>
-  <%= f.input :email %>
-  <%= f.input :rol_id %>
-  <%= f.input :cargo_id %>
+<%= simple_form_for(@usuario, :html => { :class => 'form-horizontal' }, :remote => true) do |f| %>
+
+  <%= f.error_notification %>
+  <br>
+  <%= f.label :documento_id %>
+  <%= f.collection_select :documento_id, Documento.all, :id, :descripcion, :prompt => "tipo de documento" %>
+  <br><br>
+  <%= f.input :numero_doc, :label => "numero_doc" %>
+  <%= f.input :nombres, :label => "nombres" %>
+  <%= f.input :apellidos, :label => "apellidos" %>
+  <%= f.input :direccion, :label => "direccion" %>
+  <%= f.label :ciudad_id %>
+  <%= f.collection_select :ciudad_id, Ciudad.all, :id, :descripcion, :prompt => "ciudad" %>
+  <br><br>
+  <%= f.input :telefonos, :label => "telefonos" %>
+  <%= f.input :email, :label => "email" %>
+  <%= f.label :rol_id %>
+  <%= f.collection_select :rol_id, Rol.all, :id, :descripcion, :prompt => "tipo de rol" %>
+  <br><br>
+  <%= f.label :cargo_id %>
+  <%= f.collection_select :cargo_id, Cargo.all, :id, :descripcion, :prompt => "tipo de cargo" %>
+  
+  
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                usuarios_path, :class => 'btn' %>
+    <%= f.submit "Guardar", :class => 'btn btn-primary' %>
+    <%= link_to 'Atras', usuarios_path, :class => 'btn btn-small' %>
   </div>
 <% end %>
+

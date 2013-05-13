@@ -2,8 +2,13 @@
 
   <%= f.error_notification %>
   
-  <%= f.input :usuario_id, :label => "Usuario" %>
-  <%= f.input :servicio_id, :label => "Servicio" %>
+  <%= f.label :usuario_id %>    
+  <%= f.collection_select :usuario_id, Usuario.all, :id, :nombres, :prompt => "Seleccione una Usuario"  %>
+  <br><br>
+
+  <%= f.label :servicio_id %>    
+  <%= f.collection_select :servicio_id, Servicio.all, :id, :direccion_inicial, :prompt => "Servicios en curso"  %>
+  <br><br>
   <%= f.input :descripcion, :label => "Descripcion" %>
   
   <div class="form-actions">

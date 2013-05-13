@@ -1,83 +1,53 @@
 class CargosController < ApplicationController
-  # GET /cargos
-  # GET /cargos.json
-  def index
-    @cargos = Cargo.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @cargos }
+ helper_method :sort_column, :sort_direction
+  def index
+    @rxp = (params[:numreg])? params[:numreg].to_i : 5
+
+   if ((@rxp) == 0) or ((@rxp) < 0) then
+      @rxp = 1
     end
+    @cargos = Cargo.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => (@rxp), :page => params[:page])
   end
 
-  # GET /cargos/1
-  # GET /cargos/1.json
+
   def show
     @cargo = Cargo.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @cargo }
-    end
   end
 
-  # GET /cargos/new
-  # GET /cargos/new.json
+
   def new
     @cargo = Cargo.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @cargo }
-    end
   end
 
-  # GET /cargos/1/edit
   def edit
     @cargo = Cargo.find(params[:id])
   end
 
-  # POST /cargos
-  # POST /cargos.json
+
   def create
     @cargo = Cargo.new(params[:cargo])
-
-    respond_to do |format|
-      if @cargo.save
-        format.html { redirect_to @cargo, notice: 'Cargo was successfully created.' }
-        format.json { render json: @cargo, status: :created, location: @cargo }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @cargo.errors, status: :unprocessable_entity }
-      end
-    end
+     render :action => :new unless @cargo.save
   end
 
-  # PUT /cargos/1
-  # PUT /cargos/1.json
+
   def update
     @cargo = Cargo.find(params[:id])
-
-    respond_to do |format|
-      if @cargo.update_attributes(params[:cargo])
-        format.html { redirect_to @cargo, notice: 'Cargo was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @cargo.errors, status: :unprocessable_entity }
-      end
-    end
+    render :action => :edit unless @cargo.update_attributes(params[:cargo])
   end
 
-  # DELETE /cargos/1
-  # DELETE /cargos/1.json
+
   def destroy
     @cargo = Cargo.find(params[:id])
     @cargo.destroy
+  end
+  
+      private
+  def sort_column
+    Programacion.column_names.include?(params[:sort]) ? params[:sort] : "descripcion"
+  end
 
-    respond_to do |format|
-      format.html { redirect_to cargos_url }
-      format.json { head :no_content }
-    end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

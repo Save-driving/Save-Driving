@@ -1,36 +1,40 @@
 <%- model_class = Ciudad -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><center><p class="text-success">CIUDADES</p></center></h1>
+<%= form_tag request.path, :method => 'get' do %>
+  <%= content_tag :label do %>
+    <%= image_tag('search2.png', :alt => '', :class => "img-circle" ) %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Buscar por Descripcion" %>
+    <%= submit_tag "Consultar", :class => 'btn btn-inverse', :nombre => nil %>
+    <% end %>
+<% end %>
 </div>
-<table class="table table-striped">
+<table class="table table-hover table-bordered table-condensed pretty">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:descripcion) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%= sortable "id" %></th>
+      <th><%= sortable "Descripcion" %></th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <% @ciudades.each do |ciudad| %>
-      <tr>
-        <td><%= link_to ciudad.id, ciudad_path(ciudad) %></td>
-        <td><%= ciudad.descripcion %></td>
-        <td><%=l ciudad.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_ciudad_path(ciudad), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      ciudad_path(ciudad),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+     <%= render @ciudades %>
   </tbody>
+  <tfoot>
+    <tr>
+      
+    </tr>
+  </tfoot>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_ciudad_path,
-            :class => 'btn btn-primary' %>
+<td><%= link_to 'Nueva ciudad', new_ciudad_path, :class => 'btn btn-success', :remote => true %></td>
+<br />
+<br />
+<div align="center">
+<%= will_paginate @ciudades, :previous_label => '&laquo; Anterior', :next_label => 'Siguiente
+&raquo;' %>
+</div>
+<p>
+<em>Total ciudades : </em><%= @ciudades.total_entries %>
+</p>

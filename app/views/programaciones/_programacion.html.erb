@@ -1,7 +1,7 @@
 <tr id=<%= "programacion_#{programacion.id}" %>>
   <td><%= link_to programacion.id, edit_programacion_path(programacion), :remote => true %></td>
   <td><%= programacion.usuario.nombres %></td>
-  <td><%= programacion.servicio.id %></td>
+  <td><%= programacion.servicio.direccion_inicial %></td>
   <td><%= programacion.descripcion %></td>
   <td>
     <%= link_to 'Mostrar', programacion, :remote => true, :class => 'btn btn-mini' %>

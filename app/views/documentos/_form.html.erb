@@ -1,9 +1,16 @@
-<%= simple_form_for @documento, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :sigla %>
-  <%= f.input :descripcion %>
+<%= simple_form_for(@documento, :html => { :class => 'form-horizontal' }, :remote => true) do |f| %>
+
+  <%= f.error_notification %>
+  
+  <%= f.input :sigla, :label => "sigla" %>
+  <%= f.input :descripcion, :label => "Descripcion" %>
+  
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                documentos_path, :class => 'btn' %>
+    <%= f.submit "Guardar", :class => 'btn btn-primary' %>
+    <%= link_to 'Atras', documentos_path, :class => 'btn btn-small' %>
   </div>
 <% end %>
+
+
+
+
