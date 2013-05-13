@@ -1,0 +1,12 @@
+<tr id=<%= "ciudad_#{ciudad.id}" %>>
+  <td><%= link_to ciudad.id, edit_ciudad_path(ciudad), :remote => true %></td>
+  <td><%= ciudad.descripcion %></td>
+  <td>
+    <%= link_to 'Mostrar', ciudad, :remote => true, :class => 'btn btn-mini' %>
+    <%= link_to 'Editar', edit_ciudad_path(ciudad), :remote => true,
+        :class => 'btn btn-mini' %>
+    <%= link_to 'Eliminar', ciudad, 
+        :data => { :confirm => 'Esta Seguro?' },
+        :method => :delete, :remote => true, :class => 'btn btn-mini btn-danger' %>
+  </td>
+</tr>

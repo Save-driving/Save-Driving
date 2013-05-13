@@ -1,0 +1,19 @@
+<%- model_class = Usuario -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<div class='usuario'>
+  <p><%= @usuario.id %></p>
+  <p><%= @usuario.documento.descripcion %></p>
+  <p><%= @usuario.numero_doc %></p>
+  <p><%= @usuario.nombres %></p>
+  <p><%= @usuario.apellidos %></p>
+  <p><%= @usuario.direccion %></p>
+  <p><%= @usuario.ciudad.descripcion %></p>
+  <p><%= @usuario.telefonos %></p>
+  <p><%= @usuario.email %></p>
+  <p><%= @usuario.rol.descripcion %></p>
+  <p><%= @usuario.cargo.descripcion %></p>
+</div>
+

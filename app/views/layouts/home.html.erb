@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Save Driving</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div class="row">
+        <div class="span9">
+            <div class="navbar navbar-inverse">
+                 <div class="navbar navbar-fixed-top">
+                    <div class="navbar">
+                         <div class="navbar-inner">
+                            <a class="brand" href="programaciones"> <%=image_tag('LOGO2.png', :width => '60', :alt => '', :class => "img-rounded" ) %> Save Driving</a>
+                            <ul class="nav">
+                            <li><a href="#"></a></li>
+                            </ul>
+                            <p></p>
+                                                        
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    </div>
+        <div class="span4 offset9">
+       
+         
+        <%= link_to image_tag('Twitter.png', :width => '70'), "http://twiter.com" %>
+        <%= link_to image_tag('facebook.jpeg', :width => '70'), "http://facebook.com" %>
+        <%= link_to image_tag('googlemap.jpeg', :width => '70'), "http://maps.google.es" %>
+        <%= link_to image_tag('youtube2.jpg', :width => '70'), "http://youtube.com" %>
+    </div>
+    <div>
+        <ul class="nav nav-list">
+            <li class="nav-header">WELCOME</li>
+            <li class="active"><a href="login">Ingresar</a></li>
+            <li><a href="#">Sobre nosotros</a></li>
+            <li><a href="#">Ayuda</a></li>
+            <li><a href="#">Terminos de uso</a></li>
+            <li><a href="#">Publicidad</a></li>
+            <li><a href="#">Trabajar con nosotros</a></li>
+        </ul>
+    </div>
+    <div class="span9">
+        <div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+             <div class="carousel-inner">
+                <div class="active item"><strong><em><center><p class="text-warning">En el Camino</p><center></strong></em>
+                    <%= link_to image_tag('camino1.jpeg') %>
+                    <blockquote class="pull-right">
+                    <p> Accede desde tu movil o tablet a internet, en cualquier momento que desees,
+                    <p> mira todos los beneficios, sin pólizas ni cláusulas de permanencia.</p>
+                    </blockquote>
+                </div>
+                 <div class="item"><strong><em><center><p class="text-error"> En Un Momento Difícil</p><center></strong></em>
+                    <%= link_to image_tag('problema.jpeg') %>
+                    <blockquote class="pull-right">
+                        <p>Regístrate sin costo, sólo llena tus datos, selecciona la asistencia que requieres,
+                        <p>te comunicas directamente sin intermediarios, fácil, garantizado y seguro.</p>
+                    </blockquote>
+                </div>
+                <div class="item"><strong><em><center><p class="text-success">La Solución Está En Tus Manos</p><center></strong></em>
+                    <%= link_to image_tag('solucion.jpeg') %>
+                    <blockquote class="pull-left">
+                        <p> Tienes todas las herramientas, asistencia vehicular instantánea
+                        <p> sin comunicación con asesores, sin largas esperas en linea</p>
+                        <p> puedes hacerlo tu mismo, más rápido y eficiente.</p>
+                    </blockquote>
+                </div>
+        </div>
+        <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+</div>
+</body>
+</html>

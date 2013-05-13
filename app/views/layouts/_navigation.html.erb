@@ -1,0 +1,45 @@
+<right><%= link_to "INICIO", root_path %></right>
+<right><%=image_tag('LOGO2.png', :width => '60', :alt => '', :class => "img-rounded" ) %><right>
+
+<ul class="nav">
+    <!-- if user_signed_in? %>  -->
+    <li>
+    <%= link_to('Roles', roles_path ) %>
+    </li>
+    <li>
+    <%= link_to('Usuarios', usuarios_path) %>
+    </li>
+   <!-- else %> -->
+    <li>
+    <%= link_to('Documentos', documentos_path)  %>
+    </li>
+   <!-- end %> -->
+  <!-- if user_signed_in? %> -->
+    <li>
+    <%= link_to('Ciudades', ciudades_path) %>
+    </li>
+    <li>
+    <%= link_to('Programaciones', programaciones_path) %>
+    </li>
+    <li>
+    <%= link_to('Servicios', servicios_path) %>
+    </li>
+    <li>
+    <%= link_to('Especiales', especiales_path) %>
+    </li>
+    <li>
+    <%= link_to('Calificaciones', calificaciones_path) %>
+    </li>
+    <li>
+      <%= link_to('Registrarse') %>
+    </li>
+    <li>
+    <%= link_to "Ingresar" %>
+    </li>
+    <li>
+    <%= link_to "Salir" %>
+    </li>
+    
+  <!-- end %> -->
+
+</ul> 

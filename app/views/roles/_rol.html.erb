@@ -1,0 +1,12 @@
+<tr id=<%= "rol_#{rol.id}" %>>
+  <td><%= link_to rol.id, edit_rol_path(rol), :remote => true %></td>
+  <td><%= rol.descripcion %></td>
+  <td>
+    <%= link_to 'Mostrar', rol, :remote => true, :class => 'btn btn-mini' %>
+    <%= link_to 'Editar', edit_rol_path(rol), :remote => true,
+        :class => 'btn btn-mini' %>
+    <%= link_to 'Eliminar', rol, 
+        :data => { :confirm => 'Esta Seguro?' },
+        :method => :delete, :remote => true, :class => 'btn btn-mini btn-danger' %>
+  </td>
+</tr>
